@@ -2,10 +2,13 @@ package config;
 
 import com.jfinal.config.*;
 import com.jfinal.kit.PropKit;
+import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.server.undertow.UndertowServer;
 import com.jfinal.template.Engine;
 import controller.HelloController;
 import controller.MyController;
+import model.User;
 import routes.FrontRoutes;
 
 public class DemoConfig extends JFinalConfig {
@@ -13,7 +16,7 @@ public class DemoConfig extends JFinalConfig {
 * 书写一些通用的配置
 * */
     public static void main(String[] args) {
-        UndertowServer.start(DemoConfig.class, 8080, true);
+        UndertowServer.start(DemoConfig.class, 7878, true);
     }
 
     /*
@@ -90,7 +93,15 @@ public class DemoConfig extends JFinalConfig {
     * */
 
     public void configPlugin(Plugins me) {
+        //druid
+        DruidPlugin dp = new DruidPlugin("jdbc:mysql://localhost/cps?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT", "root", "141540");
+        me.add(dp);
+        //active 插件的使用
+        ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
+        me.add(arp);
 
+        //建立表名到model之间的映射关系
+        arp.addMapping("user","user_id", User.class);
     }
 
     /*
