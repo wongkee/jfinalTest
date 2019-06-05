@@ -1,10 +1,12 @@
 package config;
 
 import com.jfinal.config.*;
+import com.jfinal.kit.PropKit;
 import com.jfinal.server.undertow.UndertowServer;
 import com.jfinal.template.Engine;
 import controller.HelloController;
 import controller.MyController;
+import routes.FrontRoutes;
 
 public class DemoConfig extends JFinalConfig {
 /*
@@ -19,8 +21,27 @@ public class DemoConfig extends JFinalConfig {
     * devMode 开发模式常量， true表示Jfinal运行在开发模式
     * */
     public void configConstant(Constants me) {
-        me.setDevMode(true);
+        PropKit.use("config.txt");
+       // me.setDevMode(true);
+        me.setDevMode(PropKit.getBoolean("devMode"));
     }
+        /*
+    *   PropKit工具类用来读取外部键值对配置文件，PropKit可以极度方便地在系统任意时空使用
+    *   配置文件格式
+    *   userName=james
+        email=no-reply@jfinal.com
+        devMode=true
+
+        使用方法
+        PropKit.use("config.txt");
+        String userName = PropKit.get("userName");
+        String email = PropKit.get("email");
+
+        // Prop 配合用法
+        Prop p = PropKit.use("config.txt");
+        Boolean devMode = p.getBoolean("devMode");
+    * */
+
 
     /*
     * 用来配置访问路由
@@ -35,8 +56,9 @@ public class DemoConfig extends JFinalConfig {
     * 使用 @ActionKey("/login") 注解可以打破原有的路由规则
     * 可以使用Handle定制个性化路由
     * */
+
     public void configRoute(Routes me) {
-     
+
        /*
          me.add("/hello", HelloController.class);
         me.add("/myvoice", MyController.class);
@@ -50,6 +72,12 @@ public class DemoConfig extends JFinalConfig {
        * http://localhost:8080/myvoice/voice
        *
        * */
+     /*
+     * me.add(Routes routes)
+     * 建议使用这种方法模块化开发，更易进行管理
+     * 比如 将前端路由定义在FrontRoutes
+     * */
+       me.add(new FrontRoutes());
     }
 
     /*
@@ -60,7 +88,10 @@ public class DemoConfig extends JFinalConfig {
     /*
     * 配置插件 如配置Druid数据库连接池
     * */
-    public void configPlugin(Plugins me) {}
+
+    public void configPlugin(Plugins me) {
+
+    }
 
     /*
     * 用于配置全局拦截器，将会拦截所有的action请求，除非使用@Clear在Controller中清除
@@ -71,6 +102,10 @@ public class DemoConfig extends JFinalConfig {
     *Handler可以接管所有web请求，并对应用拥有完全的控制权，可以很方便地实现更高层的功能性扩展。
     * */
     public void configHandler(Handlers me) {}
+
+
+
+
 
     public  void onStart(){
         System.out.println("项目启动前");

@@ -21,3 +21,18 @@
 </dependency>
 
 ```
+
+TODO:  
+JFinalConfig 已完成  
+Controller  
+    接收前台传递过来的数据：
+        getModel/getBean  ?
+     将数据发送到前台
+AOP
+ActiveRecord  
+Enjoy 模板引擎  
+EhCachePlugin  
+RedisPlugin  
+...
+
+    

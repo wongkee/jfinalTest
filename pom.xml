@@ -45,6 +45,13 @@
       <artifactId>undertow-websockets-jsr</artifactId>
       <version>2.0.19.Final</version>
     </dependency>
+
+    <!--druid数据库连接池-->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.1.16</version>
+    </dependency>
   </dependencies>
 
   <build>
