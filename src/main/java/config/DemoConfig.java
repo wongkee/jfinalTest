@@ -94,9 +94,9 @@ public class DemoConfig extends JFinalConfig {
 
     public void configPlugin(Plugins me) {
         //druid
-        DruidPlugin dp = new DruidPlugin("jdbc:mysql://localhost/cps?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT", "root", "141540");
+        DruidPlugin dp = new DruidPlugin("jdbc:mysql://10.27.143.11/cps?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT", "root", "141540");
         me.add(dp);
-        //active 插件的使用
+        //active 插件的使用layout.html 里头的 template function
         ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
         me.add(arp);
 

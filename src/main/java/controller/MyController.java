@@ -6,7 +6,8 @@ import model.User;
 public class MyController extends Controller {
     public  void voice(){
         System.out.println("I am voice");
-        renderText("I am voice!!!");
+        //renderText("I am voice!!!");
+
     }
  /*
   public void test(){

@@ -22,7 +22,9 @@ import com.jfinal.core.NotAction;
 public class HelloController extends Controller {
     //若不指定访问哪个方法 默认访问index方法
     public void index() {
-        renderText("Hello JFinal World.");
+        //renderText("Hello JFinal World.");
+        setAttr("name","zhangsan");
+        render("index.html");
     }
 
     public void helloJFinal(){
