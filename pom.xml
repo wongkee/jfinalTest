@@ -36,7 +36,7 @@
     <dependency>
       <groupId>com.jfinal</groupId>
       <artifactId>jfinal</artifactId>
-      <version>4.0</version>
+      <version>4.9.11</version>
     </dependency>
 
     <!--如果需要 WebSocket 支持，再添加一个依赖，不开发 WebSocket 无需理会-->
